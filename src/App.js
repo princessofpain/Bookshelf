@@ -5,12 +5,6 @@ import './App.css'
 
 class BooksApp extends Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
     books: [],
     showSearchPage: false
   }
@@ -24,14 +18,17 @@ class BooksApp extends Component {
       this.setState({
         books: fetchedBooks
       })
-      console.log('Books are fetched');
+      console.log(this.state.books);
     })
     .catch(function(error) {
       this.setState({
         books: ['Data can´t be loaded']
       })
-      console.log('Books can´t be fetched!')
     })
+  }
+
+  getBookshelfBooks(bookshelf) {
+    return this.state.books.filter((b) => b.shelf === bookshelf);
   }
 
   render() {
@@ -66,15 +63,15 @@ class BooksApp extends Component {
               <div>
                 <Bookshelf
                   title='Currently Reading'
-                  books={}
+                  books={this.getBookshelfBooks('currentlyReading')}
                 />
                 <Bookshelf
                   title='Want to Read'
-                  books={}
+                  books={this.getBookshelfBooks('wantToRead')}
                 />
                 <Bookshelf
                   title='Read'
-                  books={}
+                  books={this.getBookshelfBooks('read')}
                 />
               </div>
             </div>
