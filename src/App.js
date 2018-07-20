@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import Bookshelf from './Bookshelf';
 import './App.css'
 
@@ -11,7 +11,27 @@ class BooksApp extends Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
+    books: [],
     showSearchPage: false
+  }
+
+  componentDidMount() {
+    this.fetchBooks();
+  }
+
+  fetchBooks() {
+    BooksAPI.getAll().then((fetchedBooks) => {
+      this.setState({
+        books: fetchedBooks
+      })
+      console.log('Books are fetched');
+    })
+    .catch(function(error) {
+      this.setState({
+        books: ['Data can´t be loaded']
+      })
+      console.log('Books can´t be fetched!')
+    })
   }
 
   render() {
@@ -44,9 +64,18 @@ class BooksApp extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf/>
-                <Bookshelf/>
-                <Bookshelf/>
+                <Bookshelf
+                  title='Currently Reading'
+                  books={}
+                />
+                <Bookshelf
+                  title='Want to Read'
+                  books={}
+                />
+                <Bookshelf
+                  title='Read'
+                  books={}
+                />
               </div>
             </div>
 
