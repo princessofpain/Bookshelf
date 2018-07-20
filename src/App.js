@@ -20,7 +20,6 @@ class BooksApp extends Component {
       this.setState({
         books: fetchedBooks
       })
-      console.log(this.state.books);
     })
     .catch(function(error) {
       this.setState({
