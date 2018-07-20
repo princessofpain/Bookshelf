@@ -12,7 +12,10 @@ class Bookshelf extends Component {
               {this.props.books.map((book, index) => {
                 return(
                   <li key={index} className='list-item'>
-                    <Book book={book}/>
+                    <Book
+                      book={book}
+                      changeBookshelf={this.props.changeBookshelf}
+                    />
                   </li>
                 )
               })}
