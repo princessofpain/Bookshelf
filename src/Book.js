@@ -5,7 +5,7 @@ class Book extends Component {
   render() {
     return(
       <div className="book">
-        <div className="book-top" style={{ backgroundImage: `url("${this.props.book.imageLinks.thumbnail}"`}}>
+        <div className="book-top" style={{ backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")`}}>
           <div className="book-cover">
             <ChangeBookshelf
               book={this.props.book}
